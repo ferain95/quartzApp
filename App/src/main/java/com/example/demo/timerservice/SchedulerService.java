@@ -1,6 +1,6 @@
 package com.example.demo.timerservice;
 
-import com.example.demo.info.CronInfo;
+
 import com.example.demo.info.TimerInfo;
 import com.example.demo.jobs.LaughingJob;
 import com.example.demo.jobs.PrintHelloWorldJob;

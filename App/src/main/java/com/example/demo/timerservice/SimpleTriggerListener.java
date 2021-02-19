@@ -25,6 +25,7 @@ public class SimpleTriggerListener implements TriggerListener {
     public void triggerFired(Trigger trigger, JobExecutionContext jobExecutionContext) {
         final String timerId = trigger.getKey().getName();
         JobDataMap jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();
+
         TimerInfo info = (TimerInfo)jobDataMap.get(timerId);
 
         if(timerId.equals("PrintHelloWorldJob"))

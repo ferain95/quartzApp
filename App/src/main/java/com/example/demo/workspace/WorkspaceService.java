@@ -31,11 +31,8 @@ public class WorkspaceService {
     }
 
     public Boolean deleteTimer(String timerId){
-
         return scheduler.deleteTimer(timerId);
-
     }
-
 
 //    public void runLaughing(){
 //        final TimerInfo info = new TimerInfo();
