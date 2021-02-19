@@ -23,12 +23,13 @@ public class SimpleTriggerListener implements TriggerListener {
 
     @Override
     public void triggerFired(Trigger trigger, JobExecutionContext jobExecutionContext) {
-        final String timerId = trigger.getKey().getName();
-        JobDataMap jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();
 
-        TimerInfo info = (TimerInfo)jobDataMap.get(timerId);
+        if(trigger.getKey().getName().equals("PrintHelloWorldJob")) {
+            final String timerId = trigger.getKey().getName();
+            JobDataMap jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();
 
-        if(timerId.equals("PrintHelloWorldJob"))
+            TimerInfo info = (TimerInfo) jobDataMap.get(timerId);
+
             if (!info.isRunForever()) {
                 int remainingFireCount = info.getRemainingFireCount() - 1;
 //                String s = String.format("Reached here! %s", counter++);
@@ -39,7 +40,11 @@ public class SimpleTriggerListener implements TriggerListener {
                     schedulerService.runNextJob();
                 }
             }
+        }
 
+        if(trigger.getKey().getName().equals("PrintTimeJob")){
+            System.out.println("Success!");
+        }
     }
 
     @Override

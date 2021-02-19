@@ -1,9 +1,11 @@
 package com.example.demo.timerservice;
 
 
+import com.example.demo.info.CronInfo;
 import com.example.demo.info.TimerInfo;
 import com.example.demo.jobs.LaughingJob;
 import com.example.demo.jobs.PrintHelloWorldJob;
+import com.example.demo.jobs.PrintTimeJob;
 import com.example.demo.util.TimerUtil;
 import org.quartz.*;
 import org.slf4j.Logger;
@@ -27,6 +29,20 @@ public class SchedulerService {
     }
 
     public void schedule(final Class jobClass, final TimerInfo info){
+        final JobDetail jobDetail = TimerUtil.buildJobDetail(jobClass, info);
+        final Trigger trigger = TimerUtil.buildTrigger(jobClass, info);
+
+        try {
+            if (scheduler.checkExists(jobDetail.getKey())){
+                scheduler.deleteJob(jobDetail.getKey());
+            }
+            scheduler.scheduleJob(jobDetail, trigger);
+        } catch (SchedulerException e) {
+            LOG.error(e.getMessage(), e);
+        }
+    }
+
+    public void schedule(final Class jobClass, final CronInfo info){
         final JobDetail jobDetail = TimerUtil.buildJobDetail(jobClass, info);
         final Trigger trigger = TimerUtil.buildTrigger(jobClass, info);
 

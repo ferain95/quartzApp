@@ -17,7 +17,7 @@ public class PrintHelloWorldJob implements Job {
         JobDataMap jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();
         TimerInfo info = (TimerInfo)jobDataMap.get(PrintHelloWorldJob.class.getSimpleName());
 
-        LOG.info("HELLO WORLD");
+        LOG.info("COUNTDOWN");
         LOG.info("Remaining Fire Count: {}", info.getRemainingFireCount());
     }
 }

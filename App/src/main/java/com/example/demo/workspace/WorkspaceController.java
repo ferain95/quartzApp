@@ -1,7 +1,5 @@
 package com.example.demo.workspace;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,7 +8,7 @@ public class WorkspaceController {
 
     private final WorkspaceService service;
 
-    @Autowired
+
     public WorkspaceController(WorkspaceService service){
         this.service = service;
     }
@@ -25,9 +23,9 @@ public class WorkspaceController {
         return service.deleteTimer(timerId);
     }
 
-//    @PostMapping("/crontrigger")
-//    public void cronTrigger(){
-//        cronService.cronTriggerJob();
-//    }
+    @PostMapping("/printTime")
+    public void printTime(){
+        service.printTimeJob();
+    }
 
 }
